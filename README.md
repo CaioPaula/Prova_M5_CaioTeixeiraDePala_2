@@ -3,23 +3,23 @@
 ## Estrutura de pastas
 
     ├──pond_s7
-    |   ├──main.py
-    |   ├──bats
-    |   |   ├──windows.bat
+    |   ├──main.py  
     |   ├──.gitignore
     |   ├──README.md
     |   ├──requirements.txt
     |   ├──backend
+    |   |   ├──bats
+    |   |   |   └──windows.bat
     |   |   ├──server.py
     |   |   ├──templates
     |   |   |   ├──index.html
-    |   |   |   ├──logs.html
+    |   |   |   └──logs.html
     |   |   
-    |   └──db/
-    |   |     ├──logs.js
-    |   |     └──positions.json
-    |   
+    |   └──db
+    |   |     └──logs.js
+    
 
+**OBS:** O arquivo bat é responsável por inicair todo o projeto, desde a criação do venv, instalação das dependências, inicialização do venv e da aplicação
 
 ## Como executar o projeto
 

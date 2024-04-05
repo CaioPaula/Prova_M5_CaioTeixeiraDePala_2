@@ -7,7 +7,7 @@
     <!-- Bootstrap and HTMX Scripts -->
     <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-mrGIlLLnJjNHRiqtRwFYdPj4FgiCmJewoWr31DPO8XrAYq3yuheihX4c+5jpP+l" crossorigin="anonymous"></script>
-    <title>Ponderada S7 - Logs</title>
+    <title>Prova 2 Logs</title>
     <style>
         /* Custom style for the hover effect */
         .list-group-item {
@@ -24,29 +24,26 @@
         }
     </style>
 </head>
-<body hx-boost="true" hx-trigger="every 3600s" hx-get="/get_logs" hx-target="this">
+<body hx-boost="true" hx-trigger="every 3600s" hx-get="/dash" hx-target="this">
 
 
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Ponderada S7</a>
+            <a class="navbar-brand" href="#">Prova 2</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <div hx-get="/check_bot_status" hx-trigger="every 3s" hx-target="this"></div>
+                        <a class="nav-link" target="_self" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_self" h    ref="/">Home</a>
+                        <a class="nav-link" target="_self" href="/ping">Ping</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_self" href="/get_saved_positions">Posições</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target="_self" href="/get_logs">Logs</a>
+                        <a class="nav-link" target="_self" href="/dash">Logs</a>
                     </li>
                 </ul>
             </div>
@@ -65,39 +62,12 @@
         </div>
         <div class="row">
             <div class="col">
-                <ul class="list-group" >
-                    {% for log in logs %}
+                <ul class="list-group" hx-get="/info" hx-target=".list-group-item" hx-trigger="every 10s">
                     <li class="list-group-item">
-                        <div class="mb-2">
-                            <span class="fw-bold">Method:</span> {{ log.method }}
-                        </div>
-                        <div class="mb-2">
-                            <span class="fw-bold">URL:</span> {{ log.path }}
-                        </div>
-                        <div class="mb-2">
-                            <span class="fw-bold">Timestamp:</span> {{ log.timestamp }}
-                        </div>
-                        <div class="mb-2">
-                            <span class="fw-bold">User Agent:</span> {{ log.user_agent }}
-                        </div>
                     </li>
-                    {% endfor %}
                 </ul>
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('htmx:afterSwap', function(event) {
-            if (event.detail.trigger.xhr.response) {
-                var response = JSON.parse(event.detail.trigger.xhr.response);
-                var botStatusElement = document.getElementById('bot_status_value');
-                if (botStatusElement) {
-                    botStatusElement.textContent = response.bot_status;
-                    botStatusElement.className = response.css_style;
-                }
-            }
-        });
-    </script>
 </body>
 </html>
