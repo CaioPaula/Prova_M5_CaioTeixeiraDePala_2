@@ -12,9 +12,7 @@
     |   |   |   └──windows.bat
     |   |   ├──server.py
     |   |   ├──templates
-    |   |   |   ├──index.html
-    |   |   |   └──logs.html
-    |   |   
+    |   |   |   └──logs.html  
     |   └──db
     |   |     └──logs.js
     
