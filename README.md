@@ -8,7 +8,7 @@
     |   ├──README.md
     |   ├──requirements.txt
     |   ├──backend
-    |   |   ├──bats
+    |   |   ├──controllers
     |   |   |   └──windows.bat
     |   |   ├──server.py
     |   |   ├──templates
